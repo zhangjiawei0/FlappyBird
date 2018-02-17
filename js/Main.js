@@ -26,8 +26,11 @@ export class Main {
 
     init() {
         this.dataStore
+            .put('pencils', [])
             .put('background', BackGround)
             .put('land', Land);
+        // 创建铅笔要在游戏逻辑运行之前
+        this.director.createPencil();
         this.director.run();
     }
 }

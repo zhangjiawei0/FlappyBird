@@ -16,6 +16,7 @@
 │   ├── BackGround.js                      // 背景类
 │   ├── DownPencil.js                      // 下半部分铅笔
 │   ├── Land.js                            // 不断移动的陆地
+│   ├── Pencil.js                          // 铅笔基类
 │   └── UpPencil.js                        // 上半部分铅笔
 ├── Director.js                            // 导演类，控制游戏的逻辑
 └── Main.js                                // 游戏开始的入口，初始化整个游戏的精灵
