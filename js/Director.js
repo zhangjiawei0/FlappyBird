@@ -38,9 +38,6 @@ export class Director {
 
         this.dataStore.get('land').draw();
 
-        // this.dataStore.get('birds').draw();
-        // this.dataStore.get('startButton').draw();
-
         let timer = requestAnimationFrame(() => this.run());
         this.dataStore.put('timer', timer);
         // cancelAnimationFrame(this.dataStore.get('timer'));
