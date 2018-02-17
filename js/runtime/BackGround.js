@@ -3,7 +3,6 @@
  */
 import {Sprite} from '../base/Sprite.js';
 
-// 背景类
 export class BackGround extends Sprite {
     constructor() {
         const image = Sprite.getImage('background');

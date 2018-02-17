@@ -3,7 +3,6 @@
  */
 import {DataStore} from './DataStore.js';
 
-// 精灵的基类，负责初始化精灵加载的资源、大小和位置
 export class Sprite {
 
     constructor(img = null,

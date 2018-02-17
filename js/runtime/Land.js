@@ -3,7 +3,6 @@
  */
 import {Sprite} from '../base/Sprite.js';
 
-// 不断移动的陆地
 export class Land extends Sprite {
     constructor() {
         const image = Sprite.getImage('land');

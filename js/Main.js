@@ -1,13 +1,12 @@
 /**
  * Create by zhangjiawei on 2018/2/17.
  */
-import {ResourceLoader} from './js/base/ResourceLoader.js';
-import {Director} from './js/Director.js';
-import {BackGround} from './js/runtime/BackGround.js';
-import {Land} from './js/runtime/Land.js';
-import {DataStore} from './js/base/DataStore.js';
+import {ResourceLoader} from './base/ResourceLoader.js';
+import {Director} from './Director.js';
+import {BackGround} from './runtime/BackGround.js';
+import {Land} from './runtime/Land.js';
+import {DataStore} from './base/DataStore.js';
 
-// 初始化整个游戏的精灵，作为游戏开始的入口
 export class Main {
 
     constructor(){
