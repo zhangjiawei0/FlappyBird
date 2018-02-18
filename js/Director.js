@@ -15,7 +15,7 @@ export class Director {
 
     // 单例模式
     static getInstance() {
-        if(!Director.instance) {
+        if (!Director.instance) {
             Director.instance = new Director();
         }
         return Director.instance;
@@ -29,15 +29,100 @@ export class Director {
         this.dataStore.get('pencils').push(new DownPencil(top));
     }
 
+    birdsEvent() {
+        for (let i = 0; i <= 2; i++) {
+            this.dataStore.get('birds').y[i] = this.dataStore.get('birds').birdsY[i];
+        }
+        this.dataStore.get('birds').time = 0;
+    }
+
+    // 判断小鸟是否撞击铅笔
+    static isStrick(bird, pencil) {
+        let s = false;
+        if (bird.top > pencil.bottom ||
+            bird.bottom < pencil.top ||
+            bird.right < pencil.left ||
+            bird.left > pencil.right) {
+            s = true;
+        }
+        return !s;
+    }
+
+    // 判断小鸟是否撞击地板和铅笔
+    check() {
+        const birds = this.dataStore.get('birds');
+        const land = this.dataStore.get('land');
+        const pencils = this.dataStore.get('pencils');
+        const score = this.dataStore.get('score');
+        // 地板的撞击判断
+        if (birds.birdsY[0] + birds.birdsHeight[0] >= land.y) {
+            this.isGameOver = true;
+            return;
+        }
+
+        // 小鸟的边框模型
+        const birdsBorder = {
+            top: birds.y[0],
+            bottom: birds.birdsY[0] + birds.birdsHeight[0],
+            left: birds.birdsX[0],
+            right: birds.birdsX[0] + birds.birdsWidth[0]
+        };
+
+        // 铅笔的边框模型
+        const length = pencils.length;
+        for (let i = 0; i < length; i++) {
+            const pencil = pencils[i];
+            const pencilBorder = {
+                top: pencil.y,
+                bottom: pencil.y + pencil.height,
+                left: pencil.x,
+                right: pencil.x + pencil.width
+            };
+
+            if (Director.isStrick(birdsBorder, pencilBorder)) {
+                this.isGameOver = true;
+                return;
+            }
+        }
+
+        // 加分逻辑
+        if (birds.birdsX[0] > pencils[0].x + pencils[0].width &&
+            score.isScore) {
+            score.isScore = false;
+            score.scoreNumber++;
+        }
+    }
+
     run() {
-        this.dataStore.get('background').draw();
+        this.check();
+        if (!this.isGameOver) {
+            this.dataStore.get('background').draw();
 
-        this.dataStore.get('pencils').map((value) => value.draw());
+            const pencils = this.dataStore.get('pencils');
+            if (pencils[0].x + pencils[0].width <= 0 && pencils.length === 4) {
+                pencils.shift();
+                pencils.shift();
+                this.dataStore.get('score').isScore = true;
+            }
+            if (pencils[0].x <= (window.innerWidth - pencils[0].width) / 2 && pencils.length === 2) {
+                this.createPencil();
+            }
 
-        this.dataStore.get('land').draw();
+            this.dataStore.get('pencils').map((value) => value.draw());
 
-        let timer = requestAnimationFrame(() => this.run());
-        this.dataStore.put('timer', timer);
-        // cancelAnimationFrame(this.dataStore.get('timer'));
+            this.dataStore.get('land').draw();
+
+            this.dataStore.get('score').draw();
+
+            this.dataStore.get('birds').draw();
+
+            let timer = requestAnimationFrame(() => this.run());
+            this.dataStore.put('timer', timer);
+        } else {
+            console.log('Game over !');
+            this.dataStore.get('startButton').draw();
+            cancelAnimationFrame(this.dataStore.get('timer'));
+            this.dataStore.destory();
+        }
     }
 }

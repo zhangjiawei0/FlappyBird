@@ -9,14 +9,14 @@ export class DataStore {
 
     // 单例模式
     static getInstance() {
-        if(!DataStore.instance) {
+        if (!DataStore.instance) {
             DataStore.instance = new DataStore();
         }
         return DataStore.instance;
     }
 
     put(key, value) {
-        if(typeof value === 'function') {
+        if (typeof value === 'function') {
             value = new value();
         }
         this.map.set(key, value);
@@ -28,7 +28,7 @@ export class DataStore {
     }
 
     destory() {
-        for(let value of this.map.values()) {
+        for (let value of this.map.values()) {
             value = null;
         }
     }
