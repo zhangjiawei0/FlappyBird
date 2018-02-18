@@ -1,7 +1,7 @@
 /**
  * Create by zhangjiawei on 2018/2/17.
  */
-import {DataStore} from './DataStore.js';
+import {DataStore} from './DataStore';
 
 export class Sprite {
 

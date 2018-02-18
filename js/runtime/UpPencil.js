@@ -1,8 +1,8 @@
 /**
  * Create by zhangjiawei on 2018/2/17.
  */
-import {Pencil} from './Pencil.js';
-import {Sprite} from '../base/Sprite.js';
+import {Pencil} from './Pencil';
+import {Sprite} from '../base/Sprite';
 
 export class UpPencil extends Pencil {
 

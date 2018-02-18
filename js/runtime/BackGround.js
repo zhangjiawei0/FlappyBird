@@ -1,7 +1,8 @@
 /**
  * Create by zhangjiawei on 2018/2/17.
  */
-import {Sprite} from '../base/Sprite.js';
+import {Sprite} from '../base/Sprite';
+import {DataStore} from '../base/DataStore';
 
 export class BackGround extends Sprite {
     constructor() {
@@ -10,6 +11,6 @@ export class BackGround extends Sprite {
             0, 0,
             image.width, image.height,
             0, 0,
-            window.innerWidth, window.innerHeight);
+            DataStore.getInstance().canvas.width, DataStore.getInstance().canvas.height);
     }
 }
