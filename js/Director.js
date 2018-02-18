@@ -32,9 +32,7 @@ export class Director {
     run() {
         this.dataStore.get('background').draw();
 
-        this.dataStore.get('pencils').forEach(function(value) {
-            value.draw();
-        });
+        this.dataStore.get('pencils').map((value) => value.draw());
 
         this.dataStore.get('land').draw();
 

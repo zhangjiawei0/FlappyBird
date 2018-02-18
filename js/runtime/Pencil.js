@@ -11,6 +11,7 @@ export class Pencil extends Sprite {
             image.width, image.height,
             window.innerWidth, 0,
             image.width, image.height);
+        this.top = top;
         this.director = Director.getInstance();
     }
 

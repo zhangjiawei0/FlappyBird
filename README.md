@@ -1,4 +1,4 @@
-## FlyBird
+## FlappyBird
 
 ## 源码目录
 ```

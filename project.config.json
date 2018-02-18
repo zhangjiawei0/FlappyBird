@@ -10,7 +10,7 @@
 	"compileType": "game",
 	"libVersion": "game",
 	"appid": "touristappid",
-	"projectname": "FlyBird",
+	"projectname": "FlappyBird",
 	"condition": {
 		"search": {
 			"current": -1,
